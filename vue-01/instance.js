@@ -59,3 +59,45 @@ new Vue({
  * 因为箭头函数并没有 this，this 会作为变量一直向上级词法作用域查找，直至找到为止，
  * 经常导致Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误。
  */
+
+// 生命周期
+var vm2 = new Vue({
+	el: '#app01',
+	data: {
+		msg: 'hi vue'
+	},
+	
+	// 在实例初始化之后, 数据观测(data observer) 和 event/wather 事件配置之前被调用.
+	beforeCreate: function() {
+		console.log('beforeCreate');
+	},
+	
+	// 在实例创建完成之后被立即调用.
+	// 在这一步,实例已完成以下的配置: 数据观测(data observer),  属性和方法的运算, watch/event 事件回调
+	// 然鹅, 挂载阶段还没开始, $el 属性目前不可见
+	created: function() {
+		console.log('created');
+	},
+	
+	// 在挂载开始之前被调用:相关的渲染函数首次被调用
+	beforeMount: function() {
+		console.log('beforeMount');
+	},
+	
+	// el 被新创建的 vm.$el 替换,挂载成功
+	mounted: function() {
+		console.log('mounted');
+	},
+	
+	// 数据更新时调用
+	beforeUpdate: function() {
+		console.log('beforeUpdate');
+	},
+	
+	// 组件 DOM 已经更新,组件更新完毕
+	updated: function() {
+		console.log('updated');
+	},
+	
+	
+})
