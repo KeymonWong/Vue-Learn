@@ -1,0 +1,13 @@
+{
+  "name": "vue-03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "computed-watch.js",
+  "scripts": {
+    "dev": "vue-cli-service serve --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "hqm",
+  "license": "MIT"
+}g

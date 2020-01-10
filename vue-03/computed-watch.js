@@ -1,3 +1,4 @@
+
 var computeVM = new Vue({
   el: '#compute',
   data: {
@@ -50,7 +51,6 @@ var computeVM = new Vue({
 
 // 调用 setter
 // computeVM.fullName = 'John Doe'
-
 
 
 /**
