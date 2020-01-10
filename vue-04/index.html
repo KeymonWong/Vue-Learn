@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div id="bind-class">
+  <p>绑定 HTML Class：</p>
+  <div v-bind:class="classObj">对象语法</div>
+  <div v-bind:class="[{ active: isActive }, errorClass ]">数组语法</div>
+ 
+  <div>绑定内联样式：</div>
+  <div v-bind:style="styleObj"></div>
+  <div v-bind:style="[ baseStyle, overrideStyle ]"></div>
+  <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+</div>
+
+  <script src="class-style.js"></script>
+</body>
+</html>
