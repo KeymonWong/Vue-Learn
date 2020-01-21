@@ -48,6 +48,44 @@
       注意：不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。
     -->
 
+    <hr />
+
+    <p>数组更新检测</p>
+    <div id="listen">
+      <ul>
+        <p>变异方法，即调用了这些方法，原始数组会被改变。有如下方法：</p>
+        <li v-for="mutation in mutations">
+          {{ mutation.method }}
+        </li>
+  
+        <p>非变异方法，即调用了这些方法，原始数组不会改变，而总是返回一个新数组。有如下方法：</p>
+        <li v-for="non_mutation in non_mutations">
+          {{ non_mutation.method }}
+        </li>
+      </ul>
+      <p>当使用非变异方法时，可以用新数组替换旧数组</p>
+
+      <p>有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个计算属性，来返回过滤或排序后的数组：</p>
+      <li v-for="i in evenNumbers">{{ i }}</li>
+      <p>在计算属性不适用的情况下 (例如，在嵌套 v-for 循环中) 你可以使用一个方法：</p>
+      <li v-for="n in even(numbers)">{{ n }}</li>
+      
+      <ul>
+        <h3>注意事项</h3>
+        <p>由于 JavaScript 的限制，Vue 不能检测以下数组的变动：</p>
+        <li>当你利用索引直接设置一个数组项时，例如：vm.items[indexOfItem] = newValue</li>
+        <li>当你修改数组的长度时，例如：vm.items.length = newLength</li>
+        <p>为了解决第一类问题，以下两种方式都可以实现和 vm.items[indexOfItem] = newValue 相同的效果，同时也将在响应式系统内触发状态更新：</p>
+        <p>// Vue.set <br/> Vue.set(vm.items, indexOfItem, newValue)</p>
+        <p>// Array.prototype.splice <br/> vm.items.splice(indexOfItem, 1, newValue)</p>
+        <p>也可以使用 vm.$set 实例方法，因为该方法是全局方法 Vue.set 的一个别名 <br /> vm.$set(vm.items, indexOfItem, newValue)</p>
+        <p>为了解决第二类问题，你可以使用 splice：<br/> vm.items.splice(newLength)</p>
+      </ul>
+    </div>
+
+    <hr/>
+
+
     <script src="list-render.js"></script>
   </body>
 </html>

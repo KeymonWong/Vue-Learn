@@ -1,4 +1,3 @@
-
 var computeVM = new Vue({
   el: '#compute',
   data: {
