@@ -6,8 +6,48 @@
   </head>
 
   <body>
-    <div id="list">
+    <p>用 v-for 指令基于一个数组来渲染一个列表。v-for 需要使用 item in items 形式的特殊语法，其中 items 是源数据数组，而 item 则是被迭代的数组元素的别名：</p>
+    <ul id="example01">
+      <li v-for="item in items">
+        {{ item.msg }}
+      </li>
+    </ul>
+
+    <hr />
+
+    <p>在 v-for 块中，我们可以访问所有父作用域的属性。v-for 还支持一个可选的第二个参数，即当前项的索引：</p>
+    <ul id="example02">
+      <li v-for="(item, index) in items">
+        {{ parentMsg }} - {{ index }} - {{ item.msg }}
+      </li>
+    </ul>
+
+    <!-- 也可以用 of 替代 in 作为分隔符，因为它更接近 JavaScript 迭代器的语法 -->
+    <div v-for="item of items">可以用 of 替代 in 作为分隔符，类似迭代器的语法 item of items</div>
+
+    <hr />
+
+    <p>用 v-for 来遍历一个对象的属性（提供第二个参数作为属性名，即 key 值，也可以引入第 3 个参数 index）：</p>
+    <p>注意：在遍历对象时，会按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下都一致。</p>
+    <ul id="v-for-object" class="demo">
+      <li v-for="(value, key) in object">
+        {{ key }}: {{ value }}
+      </li>
+    </ul>
+
+    <!-- 
+      维护状态
+      当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用“就地更新”的策略。
+      如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。
       
-    </div>
+      这个默认的模式是高效的，但是只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出
+
+      建议尽可能在使用 v-for 时提供 key 属性，DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。
+      因为它是 Vue 识别节点的一个通用机制，key 并不仅与 v-for 特别关联。
+
+      注意：不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。
+    -->
+
+    <script src="list-render.js"></script>
   </body>
 </html>
